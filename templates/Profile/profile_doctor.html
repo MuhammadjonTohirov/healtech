@@ -1,0 +1,45 @@
+{% extends "Layout/base.html" %}
+{% load static tz i18n %}
+{% block content %}
+      <!--site header-->
+      <header class="site-header common-static-header">
+        <div data-stellar-background-ratio="0.25" style="background-image: url({% static "images/header-parallax.jpg" %}" class="parallax-bg"></div>
+        <div class="container">
+          <h1>DOCTOR PROFILE</h1>
+        </div>
+      </header>
+      <!--end site header-->
+      <section class="no-padding-bottom">
+        <div class="container">
+          <div class="row">
+            <aside class="col-md-4 hidden-sm hidden-xs">
+              <div class="widget author-style-1">
+                <h5>ABOUT DOCTOR</h5>
+                <div class="author-item"><img src="{{ doctor.image.url }}" alt="author">
+
+                </div>
+              </div>
+              <div class="widget   widget-blog-categories">
+                <ul class="blog-categories uppercase">
+                  <li><a href="#"><strong>NAME:</strong> {{ doctor.user.first_name }} {{ doctor.user.last_name }}</a></li>
+                  <li><a href="#"><strong>POSITION:</strong> {{ doctor.pos.get }}</a></li>
+                  <li><a href="#"><strong>ADDRESS:</strong> {{ doctor.address }}</a></li>
+                  <li><a href="#"><strong>TIME:</strong> {{ doctor.works_from }} ~ {{ doctor.works_to }}</a></li>
+                  <li><a href="#"><div data-rating="3" class="star-ratings"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div></a></li>
+                </ul>
+              </div>
+
+            </aside>
+            <div class="col-md-8 col-xs-12">
+              <article class="post-index post-index-style-1 video-embed">
+                <header class="entry-header">
+                  <h2 class="post-title"><a href="#" class="blog-link">SHORT DESCRIPTION</a></h2>
+                </header>
+                <div class="entry-content">{{ doctor.description }}</div>
+              </article>
+              <div class="list-button"><a href="{% url "make_appointment" doc_id=doctor.user_id%}" class="normal-btn normal-btn-main btn-size-3">MAKE AN APPOINTMENT</a></div><br>
+            </div>
+          </div>
+        </div>
+      </section>
+      {% endblock %}

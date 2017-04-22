@@ -1,0 +1,84 @@
+{% extends "Layout/base.html" %}
+{% load static tz i18n %}
+{% block content %}
+    <!--site header-->
+    <header class="site-header common-static-header">
+        <div data-stellar-background-ratio="0.25"
+             style="background-image: url('{% static "images/header-parallax.jpg" %}');"
+             class="parallax-bg"></div>
+        <div class="container">
+            <h1>User Profile</h1>
+        </div>
+    </header>
+    <!--end site header-->
+    <section class="no-padding-bottom">
+        <div class="container">
+            <div class="row">
+                <aside class="col-md-4 hidden-sm hidden-xs">
+                    <div class="widget author-style-1">
+                        <h5>ABOUT USER</h5>
+                        <div class="author-item"><img src="{{ img_url }}" alt="author">
+
+                        </div>
+                    </div>
+                    <div class="widget widget-blog-categories">
+                        <ul class="blog-categories uppercase">
+                            <li><strong>NAME:</strong> {{ user.user.first_name }} {{ user.user.last_name }}</li>
+                            <li><strong>Birthday:</strong> {{ user.birth_date }}</li>
+                            <li><strong>ADDRESS:</strong> 55, Bobur street, Tashkent</li>
+                            {#                  <li><strong>HOSPITAL:</strong> HEAL tech center</li>#}
+                            {#                  <li><strong>MEDICAL INSURANCE NO:</strong> 0-192012</li>#}
+                        </ul>
+                    </div>
+
+                </aside>
+                <div class="col-md-8 col-xs-12">
+                    <article class="post-index post-index-style-1 video-embed">
+                        <header class="entry-header">
+                            <h2 class="post-title"><a href="#" class="blog-link">MEDICAL HISTORY OF USER</a></h2>
+                        </header>
+                        <div class="entry-content">{{ user.about_illness }}</div>
+                    </article>
+                    <h2>USER HISTORY</h2>
+                    {% for foo in appointment %}
+                        <p>{{ foo.for_doctor.from_patient }}</p>
+                    {% endfor %}
+
+                    <div class="shop-cart-list">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th class="product-img">DATE</th>
+                                <th class="product-name">DISEASE NAME</th>
+                                <th class="product-time">TAKEN PILLS</th>
+                                <th class="product-rating">RESPONSIBLE DOCTOR</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for appointment in appointments %}
+                                <tr class="cart-item">
+                                    <td class="product-img">{{ appointment.date }}</td>
+                                    <td class="product-name">
+                                        {% for foo in appointment.illness.all.values_list %}
+                                            {{ foo.1 }}<br>
+                                        {% endfor %}
+
+                                    </td>
+                                    <td class="product-time">
+                                        {% for foo in appointment.drugs.all.values_list %}
+                                            {{ foo.1 }} <br>
+                                        {% endfor %}
+
+                                    </td>
+                                    <td class="product-rating">{{ appointment.suggestion_for.for_doctor }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--site footer-->
+{% endblock %}

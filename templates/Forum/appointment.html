@@ -1,0 +1,25 @@
+{% extends "Layout/base.html" %}
+{% load static %}
+{% block content %}
+    <section class="one-child page-under-construction-3-wrapper">
+        <div data-stellar-background-ratio="0.25"
+             style="background-image: url({% static "images/registration.jpg" %}"
+             class="page-common-background"></div>
+        <div class="page-rigsiter-wrapper">
+            <div class="page-rigsiter">
+                <form action="{% url 'make_appointment' doc_id=id%}" method="post">
+                    {% csrf_token %}
+                    <h6 class="" style="color:red; ">{{ error }}</h6>
+                    <h3>MAKE AN APPOINTMENT</h3>
+                    <p>DATE *</p>
+                    <input type="text" name="date" placeholder="ex: 2017-03-22" class="date" required>
+                    <p>TIME *</p>
+                    <input type="text" name="time" placeholder="ex: 16:25" required>
+                    <p>DESCRIBE SYMPTOMS:</p>
+                    <textarea type="text" name="description" placeholder="ex: I have something inside my head"></textarea>
+                    <div class="button"><input class="normal-btn normal-btn-main btn-size-5" type="submit" value="SUBMIT"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock %}

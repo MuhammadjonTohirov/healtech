@@ -1,0 +1,82 @@
+{% extends "Layout/base.html" %}
+{% load static %}
+{% block content %}
+    <header class="site-header"></header>
+    <header class="site-header common-static-header">
+        <div data-stellar-background-ratio="0.25"
+             style="background-image: url({% static "images/header-parallax.jpg" %});" class="parallax-bg"></div>
+        <div class="container">
+            <h1>CONTACT</h1>
+        </div>
+    </header>
+    <!--end site header-->
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="page-contact">
+                    <div class="col-md-5 section-block">
+                        <h5>HI! WE ARE SUPPORT</h5>
+                        <h3>SEND EMAIL FOR US</h3>
+                        <div class="widget contact-us">
+                            <form id="contact_form">
+                                <input type="text" name="name" placeholder="Name" required class="name">
+                                <input type="email" name="email" placeholder="Email" required class="email">
+                                <textarea name="message" placeholder="Message" required class="msg"></textarea>
+                                <button type="submit" class="normal-btn normal-btn-main btn-size-5">SUBMIT</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-7 section-block">
+                        <iframe src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;q=55+Bobur+ko'chasi,+Тошкент+100007,+Uzbekistan&amp;aq=&amp;sll=41.2845195,69.252272&amp;sspn=69.252272,69.252272&amp;ie=UTF8&amp;geocode=FbprVAMdI5e-_w&amp;split=0&amp;hq=&amp;hnear=55+Bobur+ko'chasi,+Тошкент+100007,+Uzbekistan&amp;t=m&amp;z=17&amp;iwloc=A&amp;output=embed"
+                                class="map-iframe"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block footer %}
+    <footer class="footer-preset-02">
+        <div class="container">
+            <div class="footer-preset-wrapper">
+                <div class="row">
+
+                    <div class="col-lg-6 col-md-6 col-sm-8 col-xs-12">
+                        <div class="footer-quote-02">
+                            <div class="footer-quote"><a href="{% url "index" %}"><img
+                                    src="{% static "images/headerlogo.png" %}" alt="wolverine"></a>
+                                <div class="content">
+                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
+                                        euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.<br><br>standard
+                                        dummy text ever since. Lorem Ipsum has been the industry’s standard dummy text
+                                        ever since. </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-6 col-md-6 col-sm-8 col-xs-12">
+                        <div class="blog-related">
+                            <p style="width: 70%">HEAL tech is a great start for an medical personnel or
+                                organization to
+                                start the online healing with 1 Click.</p>
+                            <div class="info-list">
+                                <ul class="list-unstyled">
+                                    <p><i class="icon icon-mail"></i><a href="#"> toshkent.sh@markaz.uz</a></p>
+                                    <p><i class="icon icon-phone"></i><a href="#"> (8-371) 252-23-31</a></p>
+                                    <p>55 Bobur street, Yakkasaroy district</p>
+                                    <p>Toshkent, Uzbekistan - index: 100100</p>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="footer-foot text-center">
+            <p>© 2017 DESIGNED BY INHA University in Tashkent.</p>
+        </div>
+    </footer>
+{% endblock %}

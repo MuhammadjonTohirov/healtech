@@ -1,3 +1,18 @@
+# Created by .ignore support plugin (hsz.mobi)
+### VirtualEnv template
+# Virtualenv
+# http://iamzed.com/2009/05/07/a-primer-on-virtualenv/
+.Python
+[Bb]in
+[Ii]nclude
+[Ll]ib
+[Ll]ib64
+[Ll]ocal
+[Ss]cripts
+pyvenv.cfg
+.venv
+pip-selfcheck.json
+### Python template
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -20,6 +35,7 @@ lib64/
 parts/
 sdist/
 var/
+wheels/
 *.egg-info/
 .installed.cfg
 *.egg
@@ -66,7 +82,7 @@ docs/_build/
 # PyBuilder
 target/
 
-# IPython Notebook
+# Jupyter Notebook
 .ipynb_checkpoints
 
 # pyenv
@@ -74,6 +90,9 @@ target/
 
 # celery beat schedule file
 celerybeat-schedule
+
+# SageMath parsed files
+*.sage.py
 
 # dotenv
 .env
@@ -87,3 +106,10 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+.idea/
+db.sqlite3
+venvHeal/
+HealTech/media/
+
+media/

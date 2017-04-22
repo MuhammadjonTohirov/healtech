@@ -1,0 +1,38 @@
+{% extends "Layout/base.html" %}
+{% load static tz i18n %}
+{% block content %}
+    <section class="one-child page-under-construction-3-wrapper">
+        <div data-stellar-background-ratio="0.25" style="background-image: url({% static "images/registration.jpg" %});"
+             class="page-common-background"></div>
+        <div class="page-login-wrapper">
+            <div class="page-login">
+                <form action="{% url "login" %}" method="post">
+                    {% csrf_token %}
+                    <p style="color:red;">{{ error }}</p>
+                    <h3>WELCOME BACK!</h3>
+                    <p>Login to your account below</p>
+                    <div class="infor"><span class="icon"><i class="icon-user"></i></span>
+                        <input type="text" name="username" placeholder="User Name">
+                    </div>
+                    <div class="infor"><span class="icon"><i class="icon-key"></i></span>
+                        <input type="password" name="password" placeholder="PassWord">
+                    </div>
+                    <div class="remember">
+                        <label class="checkbox">
+                            <input type="checkbox"><span></span>
+                        </label>
+                        <p>Remember me</p>
+                    </div>
+                    <div class="button"><input type="submit" class="normal-btn normal-btn-main btn-size-5"
+                                               value="LOGIN"/></div>
+                    <div class="button"><a href="{% url "register" %}"
+                                           class="border-btn border-btn-lightgray btn-size-5">SIGN UP</a></div>
+
+                </form>
+                <div class="back-to-home"><a href="{% url 'index' %}">BACK TO HOME</a></div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+

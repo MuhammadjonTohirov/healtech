@@ -1,0 +1,22 @@
+{% extends "Layout/base.html" %}
+{% load static %}
+{% block content %}
+    <header class="site-header common-static-header">
+        <div data-stellar-background-ratio="0.25" style="background-image: url('assets/images/header-parallax.jpg');"
+             class="parallax-bg"></div>
+        <div class="container">
+            <h1>ERROR 404 - NOT FOUND</h1>
+        </div>
+    </header>
+    <!--end site header-->
+    <section>
+        <div class="page-error text-center">
+            <div class="container">
+                <h1>SO SORRY!</h1>
+                <h4>The document you are looking for may have been removed or re-named. Please contact the web site
+                    owner <br> for further assistance.</h4>
+                <div class="back-to-home"><a href="#">BACK TO HOME</a></div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

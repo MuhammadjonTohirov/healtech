@@ -1,0 +1,43 @@
+{% extends "Layout/base.html" %}
+{% load static tz i18n %}
+{% block content %}
+    <section class="one-child page-under-construction-3-wrapper">
+        <div data-stellar-background-ratio="0.25" style="background-image: url({% static "images/registration.jpg" %});"
+             class="page-common-background"></div>
+        <div class="page-rigsiter-wrapper">
+            <div class="page-rigsiter">
+                <form action="{% url "register" %}" method="post">
+                    {% csrf_token %}
+                    <h3> REGISTER NOW!</h3>
+                    <div class="name">
+                        <p>NAME</p>
+                        <input type="text" name="first_name" placeholder="First">
+                        <input type="text" name="last_name" placeholder="Last">
+                    </div>
+                    <p>ENTER YOUR EMAIL ADDRESS:</p>
+                    <input type="email" name="email1" placeholder="Address your email.">
+                    <p>CREATE YOUR USERNAME:</p>
+                    <input type="text" name="username" required="required">
+                    <p>CREATE YOUR PASSWORD:</p>
+                    <input id="pw1" type="password" name="password" required="required">
+                    <p>CONFIRM YOUR PASSWORD:</p>
+                    <input id="pw2" type="password" name="confirm_password" onchange="checkpwd()">
+                    <div class="button"><input class="normal-btn normal-btn-main btn-size-5" value="CREATE ACCOUNT"
+                                               type="submit"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <script>
+        function checkpwd() {
+            pw1 = document.getElementById("pw1");
+            if (pw1.innerHTML != this.innerHTML) {
+                pw1.innerText = "";
+            }
+            else
+                this.innerText = "";
+            return false;
+        }
+    </script>
+{% endblock %}

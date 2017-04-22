@@ -1,0 +1,14 @@
+{% extends "Layout/base.html" %}
+{% load static %}
+{% block content %}
+    Name: <p class="heading-hr-1">{{ user.first_name }} {{ user.last_name }}</p>
+    Username: <p>{{ user.username }}</p>
+    <form action="{% url "fill_profile" %}" method="post" class="empty-form">
+        {% csrf_token %}
+        <input type="file" name="image" value="Your picture" placeholder="Insert you avatar"><br>
+        <input type="date" name="birth_day" placeholder="17/09/1995"/><br>
+        <input type="text" name="phone_number" placeholder="+998935741369"/><br>
+        <input type="text" name="about" placeholder="witeh something about you" required/><br>
+        <input class="button single" type="submit" value="Update"/>
+    </form>
+{% endblock %}

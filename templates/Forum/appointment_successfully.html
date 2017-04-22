@@ -1,0 +1,19 @@
+{% extends "Layout/base.html" %}
+{% load static %}
+{% block content %}
+    <section class="no-padding bgc-gray">
+        <div class="container page-breadcumb no-content"><a href="#">no content</a>
+        </div>
+    </section>
+    <section class="no-padding">
+        <div class="container">
+            <div class="shop-successfully">
+                <h3 class="color-main">THANKS FOR YOUR ORDER!</h3>
+                <p>You successfully posted a payment to your account</p>
+                <p class="infor">Payment Amount:&nbsp;<span>$532.00</span></p>
+                <p class="infor">Your confirmation number is:&nbsp; <span>0123acb89f</span></p><a href="{% url "index" %}"
+                                                                                                  class="border-btn border-btn-gray btn-size-4">CONTINUE</a>
+            </div>
+        </div>
+    </section>
+{% endblock %}

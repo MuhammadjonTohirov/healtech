@@ -1,0 +1,143 @@
+{% extends "Layout/base.html" %}
+{% load static %}
+{% block content %}
+    <section class="no-padding">
+        <form class="cart-page-form">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h2>LIST OF SPECIALISTS</h2>
+                        <div class="shop-cart-list">
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th class="product-img">IMAGE</th>
+                                    <th class="product-name">NAME</th>
+                                    <th class="product-time">TIME</th>
+                                    <th class="product-rating">RATING</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for doctor in doctors %}
+                                    <tr class="cart-item">
+                                        <td class="product-img"><a
+                                                href="/auth/doctor/{{ doctor.user_id }}">
+                                            <div class="image"><img src="{{ doctor.image.url }}" alt="Cart Item"/>
+                                            </div>
+                                        </a></td>
+                                        <td class="product-name"><a
+                                                href="/auth/doctor/{{ doctor.user_id }}">{{ doctor.user.first_name }} {{ doctor.user.last_name }}</a>
+                                        </td>
+                                        <td class="product-time">{{ doctor.works_from }} ~ {{ doctor.works_to }}</td>
+                                        <td class="product-rating">
+                                            <div data-rating="4" class="star-ratings">
+                                                <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+    <section>
+        <header>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4 class="text-center heading-bgc-gray">- FORUM - Comments(5)</h4>
+                        <div class="post-comments section-block">
+                            <ul>
+                                {% for post in posts %}
+                                    <li class="big-comment">
+                                        <div class="post-comments-style">
+                                            <div class="image"><img height="100px" width="100px"
+                                                    {% if post.created_by.doctor_user %}
+                                                                    src="{{ post.created_by.doctor_user.image.url }}"
+                                                    {% elif post.created_by.patient_user %}
+                                                                    src="{{ post.created_by.patient_user.image.url }}"
+                                                    {% endif %}
+                                                                    alt="avatar"></div>
+                                            <div class="content">
+                                                <p class="name">{{ post.created_by.first_name }} {{ post.created_by.last_name }}</p>
+                                                <span class="date">{{ post.post_date }}</span>
+                                                <p class="comment"><span
+                                                        style="font-weight: bold"></span> {{ post.description }}
+                                                </p>
+
+                                                <div class="like-reply text-right"><a href="#" class="like">Like:
+                                                    <span>{{ post.total_likes }}</span></a>
+                                                </div>
+                                                <form action="{% url "comment" id=post.pk %}" method="post">
+                                                    {% csrf_token %}
+                                                    <input type="text" name="description_comment" placeholder="comment">
+                                                    <input class="reply" type="submit" name="comment_btn" value="Reply">
+                                                </form>
+                                            </div>
+                                            {#                                            {% Patient.objects.get(id=post.created_by.id).image.url%}#}
+
+                                            {% for comment in comments %}
+                                                {% if comment.comment_id == post.id %}
+                                                    <ul>
+                                                        <li class="small-comment">
+                                                            <div class="post-comments-style style-02">
+                                                                <div class="image"><img
+                                                                        {% if comment.commented_by.patient_user %}
+                                                                            src="{{ comment.commented_by.patient_user.image.url }}"
+                                                                        {% elif comment.commented_by.doctor_user %}
+                                                                            src="{{ comment.commented_by.doctor_user.image.url }}"
+                                                                        {% endif %}
+                                                                            alt="avatar"></div>
+                                                                <div class="content">
+                                                                    <p class="name">{{ comment.commented_by.first_name }} {{ comment.commented_by.last_name }}</p>
+                                                                    <a href="#"
+                                                                       class="date">{{ comment.comment_date }}</a>
+                                                                    <p class="comment">{{ comment.description }}</p>
+                                                                    <div class="like-reply text-right"><a href="#"
+                                                                                                          class="like">Like:
+                                                                        <span>{{ comment.total_likes }}</span></a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                    </li>
+                                {% endfor %}
+
+                                <div class="post-comments-form">
+
+                                    <div class="widget contact-us">
+                                        <form action="{% url "forum" %}" method="post" name="new_post">
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                <div class="col-sm-6 col-xs-12">
+                                                    <p>{{ user.first_name }} {{ user.last_name }}</p>
+                                                </div>
+                                                <div class="col-xs-12">
+                                                        <textarea placeholder="Message" name="post"
+                                                                  class="msg"></textarea>
+                                                </div>
+                                            </div>
+                                            <p>
+                                                <input type="submit" name="post_btn" value="WRITE POST"
+                                                       class="normal-btn normal-btn-main btn-size-5"/>
+                                            </p>
+                                        </form>
+                                    </div>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </section>
+{% endblock %}
